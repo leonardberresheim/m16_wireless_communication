@@ -1,0 +1,23 @@
+%GENERATEBITS generiert eine zufällige Reihe Bits aus
+%   Eingabe: 
+%       bits                Vektor - Bitstream
+%       constellation       Vektor - Konstellationspunkte
+%   Ausgabe: 
+%       y                   Vektor - Gemappeter Bitstream
+
+
+
+function y = mapper(bits, constellation)
+    n = length(bits);
+    y = strings(1,n/2);  %Pre-allocate space for y
+    x = 1;
+    for i=1:2:n
+        bits_part = bits(i:i+1);
+        bid
+        index = bi2de(bits(i:i+1)) + 1;
+        y(1,x) = constellation(index);
+        x = x + 1;
+    end
+
+    
+end
