@@ -1,4 +1,4 @@
-%GENERATEBITS generiert eine zufällige Reihe Bits aus
+% GENERATEBITS generiert eine zufällige Reihe Bits aus
 %   Eingabe: 
 %       nBits       Anzahl der Bits
 %   Ausgabe: 
