@@ -15,7 +15,7 @@ function y = decision(x, constellation)
     mittlere_leistung_const = mean(abs(constellation).^2);
     x = x.*sqrt(mittlere_leistung_const/mittlere_leistung_x);
     
-    for i=1:n_x
+    for i=1:n_x        
     a = sqrt(bsxfun(f,real(x(i)), real(constellation))+ bsxfun(f,imag(x(i)), imag(constellation)));
     y(i) = constellation(find(a == min(a)));
     end

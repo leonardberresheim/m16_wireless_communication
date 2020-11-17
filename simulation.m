@@ -23,6 +23,6 @@ x_d = decision(x, constellation);
 
 y = demapper(x_d,constellation);
 
-[nErr,ber] = countErrors(bits,y);
+[nErr,ber] = countErrors(y,bits);
 fprintf("Anzahl der Fehler: " + nErr + "\n");
 fprintf("Fehlerverhältnis: " + ber*100 + "%%\n");
