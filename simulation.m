@@ -6,10 +6,11 @@ addpath('subfunctions'); % add directory "subfunctions" to path
 
 % global simulation parameters
 ebN0dB = 0:30; % SNR (per bit) in dB
-nBits = 10 %10e3; % simulate nBits bits per simulation loop
+nBits = 10e3; %10e3; % simulate nBits bits per simulation loop
 
 constellation = [-1-1j, 1-1j, -1+1j, 1+1j]; % constellation of the
 % modulation format, here: QPSK with gray mapping)
+M = length(constellation);% Number of constellation Symbols
 
 % here goes the simulation loop...
 
@@ -19,10 +20,23 @@ bits = generateBits(nBits);
 
 x = mapper(bits, constellation);
 
-x_d = decision(x, constellation);
+%% Hinzufügen eines additiven weißen gaußverteiltem Rauschen
+% Es werden verschiedene SNR werde getestet.
+%SNR = 0:11;
+% Rauschen hinzufügen mit jeweiliger SNR
+x_n = add_awgn(x,ebN0dB,M);
+
+
+x_d = decision(x_n, constellation);
 
 y = demapper(x_d,constellation);
 
 [nErr,ber] = countErrors(y,bits);
-fprintf("Anzahl der Fehler: " + nErr + "\n");
-fprintf("Fehlerverhältnis: " + ber*100 + "%%\n");
+% Numerische Berechnuns
+P_AWGN = 0.5*erfc(sqrt(ebN0dB));
+
+semilogy(ebN0dB, ber, ebN0dB, P_AWGN, "-o");
+
+
+%fprintf("Anzahl der Fehler: " + nErr + "\n");
+%fprintf("Fehlerverhältnis: " + ber*100 + "%%\n");
