@@ -1,10 +1,16 @@
-% COUNTERRORS - Zählt die Entstandenen Bitfehler
+% COUNTERRORS - Counts number of error caused by the canal
 %   Eingabe: 
-%       x                   Zeilen-Vektor - Entschiedenen Bits
-%       bits                Zeilen-Vektor - Ursprüngliche Bits
+%       x                   (1 x n) vector - Demapped symbols
+%       bits                (1 x n) vector - Initial bit sequence
 %   Ausgabe: 
-%       nErr                Anzahl der Bitfehler
-%       ber                 Bitfehlerverhältnis
+%       nErr                Number of bit errors
+%       ber                 Bit error ratio
+% ---------------------------------------------------------
+% When this function is executed in the vectorized part of the simulation
+% then:
+%       x       (n x m) vector
+%       nErr    (1 x m) vector
+%       ber     (1 x m) vector
 
 function [nErr, ber] = countErrors(x,bits)
         n = size(x);

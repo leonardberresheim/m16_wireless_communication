@@ -1,10 +1,16 @@
-% ADD_AWGN für dem Sendesignal ein additives weißes Rauschen hinzu
-% Eingänge:
-%       x        Sendesignal
-%       snr_b    Signal-to-noise ratio pro Bit in db (TBC)
-%       M        Anzahl der Konstellationspunkte des Modulationsformat
+% ADD_AWGN adds an additiv white gaußiand noise to the sending signal
+% Input:
+%       x        (1 x n) vector - Signal
+%       snr_b    Signal-to-noise ratio per Bit in db
+%       M        Number of constellation symbols
 % Ausgänge:
-%       x_noise  Sendesignal mit Rauschen
+%       x_noise  (1 x n) vector Sendesignal mit Rauschen
+% -----------------------------------------------------------------
+% When this function is executed in the vectorized part of the simulation
+% then:
+%       snr_b     (1 x m) vector
+%       x_noise = (m x n) vector
+
 
 function x_noise = add_awgn(x, snr_b, M)
     
